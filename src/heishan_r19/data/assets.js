@@ -11,8 +11,8 @@ import {
   R20_TAVERN_ICON_ASSETS
 } from '../../heishan_r20/data/assetRoles.js';
 
-export const ASSET_ROOT = '../../assets/heishan_r19/';
-export const R20_ASSET_ROOT = '../../assets/heishan_r20/';
+export const ASSET_ROOT = new URL('../../../assets/heishan_r19/', import.meta.url).href;
+export const R20_ASSET_ROOT = new URL('../../../assets/heishan_r20/', import.meta.url).href;
 
 export function assetUrl(path) {
   if (path?.startsWith('r20:')) {

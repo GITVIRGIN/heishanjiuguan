@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100f0e">
+  <meta name="description" content="《黑山酒馆》世界背景与玩法介绍：选择执灯人，追索旧案，结成道脉，与同行者走完二十七程黑山路。">
+  <meta property="og:title" content="《黑山酒馆》· 游戏介绍">
+  <meta property="og:description" content="旧案未结，酒火还亮。进入黑山，带回被守住的一页。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gitvirgin.github.io/heishanjiuguan/guide.html">
+  <meta property="og:image" content="https://gitvirgin.github.io/heishanjiuguan/assets/heishan_r20/backgrounds/home/home-tavern-night.webp">
+  <title>黑山酒馆 · 背景与玩法</title>
+  <link rel="stylesheet" href="./src/guide.css">
+</head>
+<body>
+  <a class="skip-link" href="#guide-main">跳到介绍正文</a>
+
+  <header class="site-header" aria-label="介绍页导航">
+    <a class="brand" href="./" aria-label="返回黑山酒馆首页">
+      <span class="brand-seal" aria-hidden="true">黑</span>
+      <span><strong>黑山酒馆</strong><small>旧案未结</small></span>
+    </a>
+    <nav>
+      <a href="#world">世界背景</a>
+      <a href="#play">怎么玩</a>
+      <a href="#systems">核心机制</a>
+      <a class="nav-play" href="./">开始游玩</a>
+    </nav>
+  </header>
+
+  <main id="guide-main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-scrim"></div>
+      <div class="hero-content">
+        <p class="eyebrow">叙事策略 · 单机浏览器游戏</p>
+        <h1 id="hero-title">旧案未结，<br><span>酒火还亮。</span></h1>
+        <p class="hero-lead">黑山不是一座等人讨伐的妖山。它由被改写的卷宗、可以买卖的惩罚，以及没能说出口的证词层层堆成。</p>
+        <p class="hero-copy">选择一名执灯人和一条入山之路，在每一次抉择中留下旧因；当你终于面对首领，那些被你带上山的证词、债与同行者都会回来应验。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="./">立即开始一局</a>
+          <a class="button" href="#play">先看看怎么玩</a>
+        </div>
+        <ul class="quick-facts" aria-label="游戏内容概览">
+          <li><strong>27</strong><span>程正式山路</span></li>
+          <li><strong>9 / 6</strong><span>人物与路线</span></li>
+          <li><strong>1 + 3</strong><span>主角与同行者</span></li>
+          <li><strong>自动</strong><span>本地存档</span></li>
+        </ul>
+      </div>
+      <p class="hero-note">一局可以结束，一页旧案会留在卷宗里。</p>
+    </section>
+
+    <section id="world" class="section world-section" aria-labelledby="world-title">
+      <div class="section-heading">
+        <p class="eyebrow">卷宗第一页</p>
+        <h2 id="world-title">黑山为什么还在呼吸？</h2>
+      </div>
+      <div class="world-grid">
+        <article class="world-story">
+          <p>多年前，山中旧军、雷契、镇狱与妖祟被写进同一套卷宗。名字可以被换掉，罪责可以被转移，连死亡也能被盖章成另一种结论。</p>
+          <p>黑山酒馆坐在山路与人间的夹缝里。来客有人背着错判，有人带着契约，也有人自己就是那扇不肯打开的门。酒馆不替任何人洗清过去，只给他们一次把证词带到山顶的机会。</p>
+          <blockquote>“黑山不是藏着真相；黑山本身，就是被写坏的真相。”</blockquote>
+        </article>
+        <aside class="case-file" aria-label="玩家在故事中的位置">
+          <span>你的身份</span>
+          <h3>执灯人</h3>
+          <p>你不是无名勇者。每名可选人物都有自己的旧案、战斗方式与不能替别人承担的代价。</p>
+          <dl>
+            <div><dt>要带走的</dt><dd>证词、同行者与破局线索</dd></div>
+            <div><dt>要面对的</dt><dd>旧因应验、债印与压力</dd></div>
+            <div><dt>要回答的</dt><dd>真相被找回之后，该由谁承担？</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="play" class="section play-section" aria-labelledby="play-title">
+      <div class="section-heading centered">
+        <p class="eyebrow">一局怎样进行</p>
+        <h2 id="play-title">从第一盏灯，走到首领面前</h2>
+        <p>所有关键选择都会先显示实际影响，确认后才会写入本局。</p>
+      </div>
+      <ol class="journey">
+        <li>
+          <span class="step-number">壹</span>
+          <div><h3>选人，选路</h3><p>人物决定初始血线、护甲、伤害与专长；路线改变压力、敌势和最终首领。</p></div>
+        </li>
+        <li>
+          <span class="step-number">贰</span>
+          <div><h3>读清代价再落子</h3><p>山路抉择、战利与酒馆行动都会动态预览数值、道脉、旧因和债印变化。</p></div>
+        </li>
+        <li>
+          <span class="step-number">叁</span>
+          <div><h3>招募同行者</h3><p>队伍最多容纳三名伙伴。伙伴有独立生命和基础行动，会按自身特性在每轮出手。</p></div>
+        </li>
+        <li>
+          <span class="step-number">肆</span>
+          <div><h3>看懂每一场战斗</h3><p>逐条观看、自动播放或直接结算都保留完整战报；伤害、压力、倒地和复起都有明确来由。</p></div>
+        </li>
+        <li>
+          <span class="step-number">伍</span>
+          <div><h3>把一页带回酒馆</h3><p>胜败都会留下见证。世界卷宗逐步补全人物、路线、物件与黑山旧案。</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="systems" class="section systems-section" aria-labelledby="systems-title">
+      <div class="section-heading">
+        <p class="eyebrow">读懂黑山的六个词</p>
+        <h2 id="systems-title">你的选择，不只是一行加减</h2>
+      </div>
+      <div class="system-grid">
+        <article>
+          <img src="./assets/heishan_r20/icons/consequence/daomai.svg" alt="" width="56" height="56">
+          <h3>道脉</h3>
+          <p>一局中的成长方向。玄甲、雷契、旧案、酒火、镇符、血债与伙伴道脉，会把同一种选择逐渐变成战术。</p>
+        </article>
+        <article>
+          <img src="./assets/heishan_r20/icons/consequence/threshold.svg" alt="" width="56" height="56">
+          <h3>成势</h3>
+          <p>道脉达到关键阶段后形成的新能力。每条道脉的下一阶段与具体影响都可以提前查看。</p>
+        </article>
+        <article>
+          <img src="./assets/heishan_r20/icons/consequence/old-cause.svg" alt="" width="56" height="56">
+          <h3>旧因</h3>
+          <p>你一路带走的证词、伤痕或承诺。它们不是收藏品，而是之后会介入事件与首领战的因。</p>
+        </article>
+        <article>
+          <img src="./assets/heishan_r20/icons/consequence/fulfillment.svg" alt="" width="56" height="56">
+          <h3>应验</h3>
+          <p>旧因在合适时机兑现。有的会救命，有的会揭开伪装，也有的会让当初回避的代价重新找上门。</p>
+        </article>
+        <article>
+          <img src="./assets/heishan_r20/icons/consequence/debt.svg" alt="" width="56" height="56">
+          <h3>债印</h3>
+          <p>借来的生路与尚未偿清的代价。债印会削弱最终破局把握，但它也可能是你把队伍带到山顶的原因。</p>
+        </article>
+        <article>
+          <img src="./assets/heishan_r20/icons/consequence/clue.svg" alt="" width="56" height="56">
+          <h3>破局线索</h3>
+          <p>对首领真正弱点的认识。线索不只是数字，它会改变你在终局能否拆穿招式、契约与伪造的规则。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section combat-section" aria-labelledby="combat-title">
+      <div class="combat-art" role="img" aria-label="黑山月下的首领战场景"></div>
+      <div class="combat-copy">
+        <p class="eyebrow">队伍与战斗</p>
+        <h2 id="combat-title">伙伴不是挂在名册上的加成</h2>
+        <p>主角与同行者都拥有生命、护甲和基础行动。有人先手压制，有人后手治疗，有人替队伍挡线；援护与协击则会随着伙伴道脉进一步成形。</p>
+        <ul>
+          <li><strong>压力博弈：</strong>敌人通过专门动作增压，队伍也能用稳息与伙伴能力减压。</li>
+          <li><strong>倒地与复起：</strong>倒地者退出行动序列并显示独立状态；扶魂符或主角救援可以把伙伴重新拉回战线。</li>
+          <li><strong>完整战报：</strong>直接结算也会保留全部行动，并按最新到最早展示，让每场胜败都有解释。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section roster-section" aria-labelledby="roster-title">
+      <div class="section-heading centered">
+        <p class="eyebrow">执灯名册</p>
+        <h2 id="roster-title">六人先入山，三人藏在卷宗之后</h2>
+        <p>每个人都有不同的轮廓、立场和战术节奏；隐藏人物与路线会在世界卷宗留下不剧透的追索线索。</p>
+      </div>
+      <div class="roster-grid">
+        <article><img loading="lazy" src="./assets/heishan_r20/portraits/shen-li.png" alt="沈砺"><div><h3>沈砺</h3><p>断锋客 · 承压反击</p></div></article>
+        <article><img loading="lazy" src="./assets/heishan_r20/portraits/yue-chenbei.png" alt="岳沉碑"><div><h3>岳沉碑</h3><p>负碑甲士 · 挡线压阵</p></div></article>
+        <article><img loading="lazy" src="./assets/heishan_r20/portraits/lu-qinglu.png" alt="陆青箓"><div><h3>陆青箓</h3><p>引雷箓生 · 高险爆发</p></div></article>
+        <article><img loading="lazy" src="./assets/heishan_r20/portraits/chi-yao.png" alt="赤遥"><div><h3>赤遥</h3><p>血雷巫女 · 追击代价</p></div></article>
+        <article><img loading="lazy" src="./assets/heishan_r20/portraits/wen-fuji.png" alt="闻扶乩"><div><h3>闻扶乩</h3><p>照心先生 · 预兆控制</p></div></article>
+        <article><img loading="lazy" src="./assets/heishan_r20/portraits/xuan-yu.png" alt="玄狱"><div><h3>玄狱</h3><p>镇门人 · 护符克制</p></div></article>
+        <article class="locked" aria-label="三名等待解锁的人物"><span aria-hidden="true">？</span><div><h3>卷宗未启</h3><p>还有三名执灯人等待见证</p></div></article>
+      </div>
+    </section>
+
+    <section class="section routes-section" aria-labelledby="routes-title">
+      <div class="section-heading">
+        <p class="eyebrow">入山路线</p>
+        <h2 id="routes-title">同一座黑山，不止一种答案</h2>
+      </div>
+      <div class="route-grid">
+        <article class="route-card xuanjia"><span>守住，再反击</span><h3>玄甲破军</h3><p>以承压、格挡和反击追问：谁被允许留在门内？</p></article>
+        <article class="route-card leixue"><span>以血换雷</span><h3>雷血天罚</h3><p>用风险换取爆发，追问谁能购买、延迟或转移惩罚。</p></article>
+        <article class="route-card zhenyu"><span>封门，还是开门</span><h3>镇狱玄龟</h3><p>以禁锢、削弱和反震追问：保护从何时开始变成囚禁？</p></article>
+        <article class="route-card hidden-route"><span>卷宗仍有余页</span><h3>另三路 · 待解</h3><p>达成见证条件后，新的入山方式会进入下一局名册。</p></article>
+      </div>
+    </section>
+
+    <section class="section archive-section" aria-labelledby="archive-title">
+      <div>
+        <p class="eyebrow">跨局见证</p>
+        <h2 id="archive-title">失败不会把故事清空</h2>
+        <p>世界卷宗会记录已确认的旧案、人物熟悉度、路线见证、首领线索与结局。未解锁的人物、路线和关键物件也会显示总数与追索提示。</p>
+      </div>
+      <ul>
+        <li><strong>9</strong><span>人物档案</span></li>
+        <li><strong>6</strong><span>路线档案</span></li>
+        <li><strong>3</strong><span>关键物件</span></li>
+        <li><strong>多局</strong><span>世界余波</span></li>
+      </ul>
+    </section>
+
+    <section class="final-cta" aria-labelledby="cta-title">
+      <p class="eyebrow">山门已开</p>
+      <h2 id="cta-title">第一盏灯，等你落印。</h2>
+      <p>无需安装、无需账号。进度保存在当前浏览器中。</p>
+      <a class="button primary" href="./">开始游玩《黑山酒馆》</a>
+    </section>
+  </main>
+
+  <footer>
+    <span>黑山酒馆 · 旧案未结</span>
+    <a href="https://github.com/GITVIRGIN/heishanjiuguan">查看 GitHub 仓库</a>
+  </footer>
+</body>
+</html>

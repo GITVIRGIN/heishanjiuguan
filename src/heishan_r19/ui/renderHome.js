@@ -37,6 +37,7 @@ export function renderHome(meta, releaseLabel = 'R19', activeRun = null) {
         <div><span>先见证入馆事件，人物与路线才会进入下一局名册。</span><button class="command primary" data-action="acknowledge-expansion" data-id="${arrival.id}" data-testid="acknowledge-expansion">确认见证</button></div>
       </article>` : ''}
       ${canResume ? `<div class="home-resume" data-testid="active-run-card"><div><span>未完的一局</span><strong>${escapeHtml(resumeIdentity)}</strong><small>${escapeHtml(resumeProgress)} · 自动存档已就绪</small></div><button class="command primary" data-action="continue-run" data-testid="btn-continue-run">继续前行</button></div>` : ''}
+      <a class="command" href="../../guide.html" style="display:inline-flex;align-items:center;justify-content:center;margin-top:18px;text-decoration:none">游戏介绍 · 背景与玩法</a>
       <nav class="home-actions" aria-label="首页操作">
         <button class="command primary" data-action="new-run" data-testid="btn-new-run">开始新局</button>
         <button class="command" data-action="open-archive" data-testid="btn-task-archive">任务档案</button>

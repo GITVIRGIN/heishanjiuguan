@@ -1,5 +1,9 @@
 # 黑山酒馆 · R20 可玩分支
 
+## 在线游玩
+
+[打开《黑山酒馆》](https://gitvirgin.github.io/heishanjiuguan/)
+
 这是《黑山酒馆》当前 R20 浏览器版本的独立发布快照。该分支与仓库原有的
 `main` / `xuanluxing` 内容隔离，不覆盖原项目历史。
 

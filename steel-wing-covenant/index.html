@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="钢翼盟约：一艘战舰，四位同行者，九章机甲战争群像。在交火与日常之间，选择你愿意并肩走到最后的人。" />
+  <title>钢翼盟约｜STEEL-WING COVENANT</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="reading-layout.css" />
+</head>
+<body data-scene="title">
+  <div class="skip-link-wrap">
+    <a class="skip-link" href="#dialogue-panel">跳到对话</a>
+  </div>
+
+  <!-- ========== 标题画面 ========== -->
+  <section id="title-screen" class="title-screen" aria-label="标题画面">
+    <div class="title-art" aria-hidden="true"></div>
+    <div class="title-scrim" aria-hidden="true"></div>
+
+    <div class="title-inner">
+      <p class="title-kicker" id="title-kicker">机甲战争群像 · 视觉小说</p>
+      <h1 class="game-title">钢翼盟约</h1>
+      <p class="game-title-en">STEEL-WING COVENANT</p>
+      <p class="game-tagline">从同舰，到并肩。</p>
+
+      <form class="start-panel" id="start-form" autocomplete="off">
+        <label class="callsign-label" for="callsign-input">你的呼号 <span>最多 12 字</span></label>
+        <input
+          id="callsign-input"
+          class="callsign-input"
+          type="text"
+          name="callsign"
+          maxlength="12"
+          placeholder="牧星"
+          aria-describedby="callsign-help"
+        />
+        <p class="callsign-help" id="callsign-help">船员会这样称呼你。留空使用「牧星」。</p>
+        <div class="start-actions">
+          <button id="btn-start" class="btn primary" type="submit">开始旅程 <span aria-hidden="true">→</span></button>
+          <button id="btn-resume" class="btn" type="button" hidden>继续</button>
+          <button id="btn-fresh" class="btn subtle" type="button" hidden>从头开始</button>
+          <button id="btn-load" class="btn subtle" type="button">读取存档</button>
+        </div>
+        <p class="resume-detail" id="resume-detail" hidden></p>
+      </form>
+
+      <details class="controls-help"><summary>操作指南</summary><ul class="controls-list">
+        <li><kbd>空格</kbd> / <kbd>回车</kbd> 继续对话（打字中先补全整句）</li>
+        <li><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd> 选择分支 · <kbd>A</kbd> 自动播放 · <kbd>S</kbd> 存档</li>
+        <li><kbd>D</kbd> 人物档案 · <kbd>L</kbd> 对话回放 · <kbd>Esc</kbd> 关闭面板</li>
+        <li>输入呼号时不会推进剧情</li>
+      </ul></details>
+      <p class="title-hint" id="title-hint">九章旅程 · 八条结局路线 · 隐藏结局</p>
+    </div>
+  </section>
+
+  <!-- ========== 游戏画面 ========== -->
+  <main id="game-screen" class="game-screen" hidden aria-label="游戏画面">
+    <div class="scene-stage" id="scene-stage" aria-hidden="true">
+      <div class="scene-layer" id="scene-layer-a"></div>
+      <div class="scene-layer" id="scene-layer-b"></div>
+    </div>
+    <div class="scene-vignette" aria-hidden="true"></div>
+    <div class="scene-focus" aria-hidden="true"></div>
+    <div class="scene-fallback" id="scene-fallback" hidden>
+      <p class="scene-fallback-text" id="scene-fallback-text"></p>
+      <button id="btn-scene-retry" class="btn subtle" type="button">重试加载</button>
+    </div>
+
+    <header class="topbar">
+      <div class="chapter-context"><p class="chapter-label" id="chapter-label">第一章 · 霜环锚地</p><p class="location-label" id="location-label"></p></div>
+      <p class="save-status" id="save-status" aria-live="polite"></p>
+      <nav class="toolbar" aria-label="游戏菜单">
+        <button id="btn-auto" class="btn ghost" type="button" aria-pressed="false">自动 <span class="key-chip">A</span></button>
+        <button id="btn-saves" class="btn ghost" type="button">存档 <span class="key-chip">S</span></button>
+        <button id="btn-dossier" class="btn ghost" type="button">档案 <span class="key-chip">D</span></button>
+        <button id="btn-backlog" class="btn ghost" type="button">记录 <span class="key-chip">L</span></button>
+        <button id="btn-title" class="btn ghost" type="button">主菜单</button>
+      </nav>
+    </header>
+
+    <p class="auto-status" id="auto-status" hidden></p>
+
+    <section class="stage" aria-label="角色">
+      <figure class="portrait-wrap" id="portrait-wrap" data-speaker="narration" hidden>
+        <span class="transmission-label" aria-hidden="true">通讯</span>
+        <div class="portrait-slot">
+          <div class="portrait" id="portrait" aria-hidden="true"></div>
+          <span class="portrait-unknown" id="portrait-unknown" aria-hidden="true">Unknown</span>
+        </div>
+        <figcaption class="portrait-caption" id="portrait-caption">渡鸦号第三小队 · 待机</figcaption>
+      </figure>
+
+    </section>
+
+    <section
+      class="dialogue-panel"
+      id="dialogue-panel"
+      tabindex="-1"
+      aria-label="对话"
+    >
+      <div class="nameplate" id="nameplate" hidden>
+        <span class="speaker-name" id="speaker-name"></span>
+        <span class="speaker-role" id="speaker-role" hidden></span>
+        <span class="faction-tag" id="faction-tag" hidden></span>
+      </div>
+      <p class="reaction" id="reaction" hidden></p>
+      <p class="dialogue-text" id="dialogue-text" aria-live="polite"></p>
+      <div class="choice-list" id="choice-list" role="group" aria-label="分支选择" hidden></div>
+      <p class="blocked-note" id="blocked-note" hidden></p>
+      <p class="continue-hint" id="continue-hint"><span id="page-label"></span><span id="continue-label">继续</span><span class="continue-keys">空格 / 回车</span><span class="caret" aria-hidden="true">▸</span></p>
+      <section class="finale" id="finale" hidden aria-label="章末结算">
+        <h2 class="finale-title" id="finale-title"></h2>
+        <p class="finale-summary" id="finale-summary"></p>
+        <div class="finale-body" id="finale-body"></div>
+        <p class="boundary-note" id="boundary-note"></p>
+        <div class="finale-actions">
+          <button id="btn-continue-chapter" class="btn primary" type="button" hidden></button>
+          <button id="btn-restart" class="btn" type="button">重新开始这一局</button>
+          <button id="btn-finale-title" class="btn" type="button">回到标题画面</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- 档案 -->
+    <aside class="overlay" id="dossier" hidden role="dialog" aria-modal="true" aria-labelledby="dossier-title">
+      <div class="overlay-panel">
+        <header class="overlay-head">
+          <h2 id="dossier-title">人物与阵营档案</h2>
+          <button id="btn-close-dossier" class="btn ghost" type="button">关闭 <span class="key-chip">Esc</span></button>
+        </header>
+        <div class="overlay-scroll" id="dossier-body"></div>
+      </div>
+    </aside>
+
+    <!-- 对话回放 -->
+    <aside class="overlay" id="backlog" hidden role="dialog" aria-modal="true" aria-labelledby="backlog-title">
+      <div class="overlay-panel">
+        <header class="overlay-head">
+          <h2 id="backlog-title">对话回放</h2>
+          <button id="btn-close-backlog" class="btn ghost" type="button">关闭 <span class="key-chip">Esc</span></button>
+        </header>
+        <ol class="overlay-scroll backlog-list" id="backlog-list"></ol>
+      </div>
+    </aside>
+
+    <!-- 存档 -->
+    <aside class="overlay" id="saves" hidden role="dialog" aria-modal="true" aria-labelledby="saves-title">
+      <div class="overlay-panel">
+        <header class="overlay-head">
+          <h2 id="saves-title">存档</h2>
+          <button id="btn-close-saves" class="btn ghost" type="button">关闭 <span class="key-chip">Esc</span></button>
+        </header>
+        <p class="saves-note" id="saves-note"></p>
+        <div class="overlay-scroll" id="saves-body"></div>
+      </div>
+    </aside>
+
+    <!-- 确认 -->
+    <aside class="overlay confirm-overlay" id="confirm" hidden role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="overlay-panel confirm-panel">
+        <h2 id="confirm-title">确认</h2>
+        <p class="confirm-message" id="confirm-message"></p>
+        <div class="confirm-actions">
+          <button id="btn-confirm-ok" class="btn primary" type="button">确认</button>
+          <button id="btn-confirm-cancel" class="btn" type="button">取消</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>

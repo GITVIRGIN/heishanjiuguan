@@ -1,0 +1,16 @@
+import { REVISION as continuity } from './continuity.mjs';
+import { REVISION as hidden } from './h1.mjs';
+import { REVISION as bridge } from './bridge.mjs';
+import { REVISION as callbacks } from './chapter-six-callbacks.mjs';
+import { REVISION as concord } from './o1-concord.mjs';
+import { REVISION as scarlet } from './o2-scarlet.mjs';
+import { REVISION as spire } from './o3-spire.mjs';
+import { REVISION as together } from './o4-together.mjs';
+import { REVISION as watch } from './o5-watch.mjs';
+import { REVISION as exodus } from './o6-exodus.mjs';
+import { REVISION as lightship } from './o7-lightship.mjs';
+import { REVISION as returned } from './o8-returned.mjs';
+import { REVISION as endingStatus } from './ending-status.mjs';
+import { REVISION as sceneContinuity } from './scene-continuity.mjs';
+import { REVISION as prose } from './prose.mjs';
+export const STORY_REVISIONS = [continuity, hidden, bridge, callbacks, concord, scarlet, spire, together, watch, exodus, lightship, returned, endingStatus, sceneContinuity, prose];

@@ -1,0 +1,1130 @@
+/* 钢翼盟约 — 界面几何与排版（不绘制人物 / 机甲 / 场景，插画由 ART_BRIEFS.json 提供） */
+
+:root {
+  --navy-deep: #090f18;
+  --navy: #101926;
+  --panel: #141e2a;
+  --panel-edge: rgba(207, 219, 230, .18);
+  --ivory: #eeeae2;
+  --ivory-dim: #b4c1cc;
+  --amber: #d7b77e;
+  --red: #b87564;
+  --blue: #7995b5;
+  --text-lg: clamp(18px, 1.1vw + 9px, 22px);
+  --text-md: clamp(16px, .6vw + 10px, 18px);
+  --text-sm: 14px;
+  --radius: 8px;
+  --shadow: 0 14px 48px rgba(0,0,0,.28);
+  --font: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ivory);
+  background: var(--navy-deep);
+  line-height: 1.65;
+  font-size: var(--text-md);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+p,
+ul,
+ol,
+h1,
+h2,
+h3,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+.skip-link-wrap {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: fixed;
+  z-index: 60;
+  top: 8px;
+  left: 8px;
+  width: auto;
+  height: auto;
+  padding: 10px 14px;
+  background: var(--panel);
+  border: 1px solid var(--amber);
+  border-radius: 8px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* ---------------- 按钮与标签 ---------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 10px 18px;
+  font-size: 15px;
+  letter-spacing: .04em;
+  background: rgba(25, 37, 51, .78);
+  color: var(--ivory);
+  border: 1px solid var(--panel-edge);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.btn:hover {
+  border-color: var(--amber);
+  background: rgba(55, 64, 73, .8);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: #d7b77e;
+  border-color: #d7b77e;
+  color: #17202a;
+  font-weight: 600;
+}
+
+.btn.primary:hover {
+  background: #ead2a7;
+  border-color: #ead2a7;
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  font-size: 14px;
+}
+
+.btn.subtle {
+  background: transparent;
+  color: var(--ivory-dim);
+}
+
+.key-chip {
+  font-size: 10px;
+  color: #82909e;
+  font-weight: 400;
+}
+
+kbd {
+  display: inline-block;
+  padding: 1px 7px;
+  margin: 0 2px;
+  font-size: 14px;
+  border: 1px solid var(--panel-edge);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: rgba(10, 16, 28, 0.7);
+  color: var(--ivory);
+}
+
+/* ---------------- 标题画面 ---------------- */
+.title-screen {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.title-art {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 78% 78%, rgba(200, 69, 47, 0.16), transparent 60%),
+    linear-gradient(150deg, #0b1220 0%, #101a2b 45%, #0a101c 100%);
+  background-size: cover;
+  background-position: center;
+}
+
+.title-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(6, 10, 18, 0.95) 0%, rgba(6, 10, 18, 0.72) 42%, rgba(6, 10, 18, 0.25) 72%, rgba(6, 10, 18, 0.6) 100%),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0 2px, transparent 2px 4px);
+  pointer-events: none;
+}
+
+.title-inner {
+  position: relative;
+  z-index: 2;
+  width: min(780px, 100%);
+  padding: clamp(28px, 6vw, 100px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title-kicker {
+  font-size: var(--text-sm);
+  letter-spacing: 0.34em;
+  color: var(--amber);
+  text-transform: uppercase;
+}
+
+.game-title {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: .14em;
+  text-shadow: 0 4px 32px rgba(0,0,0,.4);
+}
+
+.game-title-en {
+  font-size: 11px;
+  letter-spacing: .38em;
+  color: #9caebf;
+}
+
+.game-tagline {
+  font-size: 19px;
+  letter-spacing: .18em;
+  color: #d6d5d0;
+  margin: 14px 0 4px;
+}
+
+.start-panel {
+  margin-top: 10px;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(420px, 100%);
+  border-top: 1px solid rgba(215,183,126,.28);
+}
+
+.callsign-label {
+  font-size: var(--text-md);
+  color: var(--ivory-dim);
+}
+
+.callsign-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 18px;
+  letter-spacing: .1em;
+  color: var(--ivory);
+  background: rgba(10, 18, 28, .6);
+  border: 1px solid rgba(220,224,230,.24);
+  border-radius: 4px;
+}
+
+.callsign-input:focus {
+  border-color: var(--amber);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 180, 84, 0.18);
+}
+
+.callsign-help {
+  font-size: var(--text-sm);
+  color: #9fb0c6;
+}
+
+.start-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.controls-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+  list-style: none;
+  font-size: 13px;
+  color: var(--ivory-dim);
+}
+
+.title-hint {
+  font-size: 12px;
+  letter-spacing: .14em;
+  color: #aebdca;
+  margin-top: 14px;
+}
+
+.resume-detail {
+  font-size: var(--text-sm);
+  color: #a9bad0;
+  border-left: 3px solid rgba(255, 180, 84, 0.5);
+  padding-left: 10px;
+}
+
+/* ---------------- 游戏画面 ---------------- */
+/* 四行网格，顺序与 index.html 的 DOM 一致：topbar → #auto-status（可隐藏）→ .stage → .dialogue-panel。
+   行归属必须在下面各块里显式写 grid-row：交给自动排布的话，状态条一旦隐藏（它带 hidden，
+   全局 [hidden] 规则让它不生成盒子），舞台就会掉进 auto 行、对话面板抢走 1fr。
+   状态条显示时是普通一行（auto），不抢舞台的高度；隐藏时 auto 行自然收成 0，不留空面板。 */
+.game-screen {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  overflow: hidden;
+}
+
+/* 场景背景由场景登记表驱动：每个 sceneId 一个精确文件路径，运行时按真实加载结果切换图层。
+   只有"确实加载成功"的那一张才会被激活——缺图时显示下面的 .scene-fallback，不拿别的场景顶替。 */
+.scene-stage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(160deg, #101a2b, #070c16 78%);
+}
+
+.scene-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 600ms ease;
+  pointer-events: none;
+}
+
+.scene-layer.active {
+  opacity: 1;
+}
+
+.scene-fallback {
+  position: absolute;
+  z-index: 2;
+  left: clamp(12px, 3vw, 36px);
+  top: clamp(64px, 12vh, 140px);
+  max-width: min(520px, 62vw);
+  display: grid;
+  gap: 10px;
+  padding: 14px 18px;
+  background: rgba(9, 14, 24, 0.92);
+  border: 1px solid var(--panel-edge);
+  border-left: 4px solid var(--amber);
+  border-radius: 0 12px 12px 0;
+  box-shadow: var(--shadow);
+}
+
+.scene-fallback-text {
+  font-size: var(--text-sm);
+  color: var(--ivory-dim);
+}
+
+.scene-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 48% 35%, transparent 35%, rgba(4,9,15,.42) 100%);
+  pointer-events: none;
+}
+
+/* 舱室之间的差别来自各自的场景图本身；这里只保留统一的轻暗角，不再用色调冒充不同房间。 */
+
+.topbar {
+  position: relative;
+  z-index: 4;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px clamp(18px, 3vw, 52px);
+  background: linear-gradient(180deg, rgba(6,12,20,.88), rgba(6,12,20,.1));
+}
+
+.chapter-label {
+  font-size: 14px;
+  letter-spacing: .14em;
+  color: var(--ivory);
+}
+
+.chapter-label::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 10px;
+  vertical-align: 2px;
+  background: var(--amber);
+  transform: rotate(45deg);
+}
+
+.save-status {
+  position: absolute;
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-size: 13px;
+  color: var(--amber);
+  text-shadow: 0 1px 4px #000;
+}
+
+.auto-status {
+  position: absolute;
+  z-index: 4;
+  top: 82px;
+  right: clamp(18px, 3vw, 52px);
+  font-size: 12px;
+  letter-spacing: .12em;
+  color: var(--amber);
+  text-shadow: 0 1px 4px #000;
+}
+
+.btn.ghost.is-on {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.toolbar {
+  display: flex;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+/* 舞台与立绘 */
+.stage {
+  position: relative;
+  z-index: 3;
+  grid-row: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8px clamp(12px, 3vw, 40px) 0;
+  min-height: 0;
+}
+
+.portrait-wrap {
+  position: absolute;
+  right: max(5vw, calc((100vw - 1100px) / 2 + 28px));
+  bottom: -14px;
+  margin: 0;
+  width: min(23vw, 294px, 34dvh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portrait-slot {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  container-type: inline-size;
+  overflow: hidden;
+  border: 1px solid rgba(220,230,240,.25);
+  border-radius: 6px;
+  background: linear-gradient(160deg, #1b2938, #0b131e);
+  box-shadow: 0 8px 36px rgba(0,0,0,.26);
+}
+
+.portrait {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-color: #0a1120;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+/* 主立绘：由 app.mjs 按节点的 expression 取精确文件路径写进 background-image（1024x1536），
+   深色相框卡片、等比缩放、头与上身完整。缺少当前表情时隐藏影像，不拿另一档顶替。 */
+.portrait-wrap.uses-portrait .portrait {
+  opacity: 1;
+  background-size: contain;
+  background-position: 50% 50%;
+}
+
+/* 相框在"有立绘"和"未知说话人（Unknown）"两种状态下完全一致：同一尺寸、同一底色、同一描边与投影 */
+.portrait-wrap.uses-portrait .portrait-slot,
+.portrait-wrap.uses-unknown .portrait-slot {
+  background: linear-gradient(160deg, #1b2938, #0b131e);
+  border: 1px solid rgba(220,230,240,.25);
+  box-shadow: 0 8px 36px rgba(0,0,0,.26);
+}
+
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 12, 21, 0) 52%, rgba(8, 12, 21, 0.72) 100%);
+  pointer-events: none;
+}
+
+/* 未知立绘：与真实立绘同一相框，字面英文 Unknown 在框内水平垂直居中。
+   字号跟随相框宽度（180px 相框 = 约 20px，不会换行或溢出）；不使用单字缩写、不加缩放变换。 */
+.portrait-unknown {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0 8%;
+  font-family: var(--font);
+  font-size: 20px;
+  font-size: clamp(15px, 11cqi, 26px);
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  text-align: center;
+  white-space: nowrap;
+  color: rgba(242, 236, 224, 0.9);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.portrait-wrap.uses-portrait .portrait-unknown {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.portrait-caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.nameplate {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(220,224,230,.12);
+}
+
+.speaker-name {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: .06em;
+}
+
+.speaker-role,
+.faction-tag {
+  color: var(--ivory-dim);
+  font-size: 12px;
+  letter-spacing: .05em;
+}
+
+.speaker-role {
+  color: #9fb0c6;
+}
+
+.faction-tag {
+  margin-left: auto;
+  color: var(--ivory-dim);
+  letter-spacing: .05em;
+}
+
+/* ---------------- 底部对话面板 ---------------- */
+.dialogue-panel {
+  position: relative;
+  z-index: 5;
+  grid-row: 4;
+  width: min(1100px, calc(100% - 64px));
+  margin: 14px auto 24px;
+  padding: 24px 34px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(120deg, rgba(10,18,28,.96), rgba(15,25,37,.94));
+  border: 1px solid rgba(207,219,230,.22);
+  border-top-color: rgba(215,183,126,.56);
+  border-radius: 6px;
+  box-shadow: 0 16px 56px rgba(0,0,0,.32);
+  cursor: pointer;
+}
+
+.dialogue-panel:focus-visible {
+  outline: 1px solid rgba(215,183,126,.65);
+  outline-offset: 3px;
+}
+
+.dialogue-panel.nudge {
+  animation: nudge 260ms ease;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.reaction {
+  padding: 10px 14px;
+  font-size: var(--text-sm);
+  color: #ffe0b6;
+  background: rgba(255, 180, 84, 0.09);
+  border-left: 3px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+}
+
+.dialogue-text {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  white-space: pre-line;
+  /* 保留固定行高空间：两三行以内的正常段落不会让立绘上下跳；很长的段落改为滚动，不裁掉文字 */
+  min-height: 3.6em;
+  max-height: min(46vh, 420px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  letter-spacing: 0.02em;
+}
+
+.choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ivory);
+  background: rgba(22, 31, 46, 0.9);
+  border: 1px solid var(--panel-edge);
+  border-left: 4px solid var(--blue);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 120ms ease, transform 120ms ease, background 120ms ease;
+}
+
+.choice:hover,
+.choice:focus-visible {
+  border-left-color: var(--amber);
+  background: rgba(38, 50, 70, 0.95);
+  transform: translateX(3px);
+  outline: none;
+}
+
+.choice-index {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
+  color: var(--navy-deep);
+  background: var(--amber);
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.choice-label {
+  min-width: 0;
+}
+
+.continue-hint {
+  align-self: flex-end;
+  font-size: var(--text-sm);
+  color: var(--ivory-dim);
+  letter-spacing: 0.1em;
+}
+
+.caret {
+  display: inline-block;
+  color: var(--amber);
+  animation: blink 1.4s steps(2, end) infinite;
+}
+
+@keyframes blink {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  61%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+/* 章末结算：第一章结局 */
+.finale {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--panel-edge);
+  max-height: min(54vh, 520px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.finale-title {
+  font-size: var(--text-lg);
+  letter-spacing: 0.12em;
+  color: var(--amber);
+}
+
+.finale-summary {
+  font-size: var(--text-md);
+  color: var(--ivory);
+}
+
+.finale-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.finale-subtitle {
+  font-size: var(--text-sm);
+  letter-spacing: 0.16em;
+  color: #9fb0c6;
+  margin-top: 6px;
+}
+
+.finale-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.finale-list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: var(--text-md);
+}
+
+.finale-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 8px;
+  height: 2px;
+  background: var(--red);
+}
+
+.finale-bonds li::before {
+  background: var(--amber);
+}
+
+.finale-leaning {
+  font-size: var(--text-md);
+  color: #ffd9a6;
+}
+
+.finale-standing {
+  font-size: var(--text-sm);
+  color: #9fb0c6;
+}
+
+.finale-hook {
+  font-size: var(--text-md);
+  color: #ffd9a6;
+  border-left: 3px solid var(--amber);
+  padding-left: 12px;
+}
+
+.finale-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.boundary-note {
+  font-size: var(--text-sm);
+  color: #9fb0c6;
+  border-top: 1px dashed var(--panel-edge);
+  padding-top: 10px;
+}
+
+.blocked-note {
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: #93a5bd;
+}
+
+.dossier-locked {
+  font-size: var(--text-sm);
+  color: #7f8ea3;
+}
+
+.meter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.meter-chip {
+  padding: 6px 12px;
+  font-size: var(--text-sm);
+  border: 1px solid var(--chip-color, var(--panel-edge));
+  border-radius: 999px;
+  color: var(--ivory);
+  background: rgba(10, 16, 28, 0.7);
+}
+
+.checkpoint-leaning {
+  font-size: var(--text-md);
+  color: #ffd9a6;
+}
+
+.checkpoint-next {
+  font-size: var(--text-sm);
+  color: #93a5bd;
+}
+
+/* ---------------- 覆盖面板 ---------------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: clamp(10px, 3vw, 40px);
+  background: rgba(4, 7, 13, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+.overlay-panel {
+  width: min(940px, 100%);
+  max-height: min(86vh, 900px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #121a28, #0c1220);
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.overlay-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--panel-edge);
+}
+
+.overlay-head h2 {
+  font-size: var(--text-lg);
+  letter-spacing: 0.12em;
+}
+
+.overlay-scroll {
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.dossier-card {
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: rgba(19, 27, 41, 0.85);
+  border: 1px solid var(--panel-edge);
+  border-left: 4px solid var(--card-color, var(--amber));
+  border-radius: 10px;
+}
+
+/* 档案照：与对话立绘同一张独立立绘，等比显示（1024x1536，不裁成三分栏） */
+.dossier-portrait {
+  display: block;
+  width: min(200px, 46%);
+  height: auto;
+  margin: 2px 0 12px;
+  aspect-ratio: 2 / 3;
+  background: #0a1120;
+  border: 1px solid var(--card-color, var(--panel-edge));
+  border-radius: 8px;
+}
+
+/* 档案照缺失/加载失败时，用与对话相框同一套措辞的占位块，不画出不存在的人物形象 */
+.dossier-portrait-unknown {
+  display: grid;
+  place-items: center;
+  width: min(200px, 46%);
+  aspect-ratio: 2 / 3;
+  margin: 2px 0 12px;
+  border: 1px solid var(--card-color, var(--panel-edge));
+  border-radius: 8px;
+  background: linear-gradient(180deg, #131d30 0%, #070c16 100%);
+  color: rgba(242, 236, 224, 0.9);
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.dossier-card header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.dossier-card strong {
+  font-size: var(--text-md);
+  letter-spacing: 0.06em;
+}
+
+.dossier-role {
+  font-size: var(--text-sm);
+  color: #9fb0c6;
+}
+
+.dossier-line,
+.dossier-bond,
+.dossier-secret {
+  font-size: var(--text-sm);
+  margin-top: 4px;
+}
+
+.dossier-line {
+  color: var(--ivory-dim);
+}
+
+.dossier-bond {
+  color: #ffd9a6;
+}
+
+.dossier-secret {
+  color: #a8b7cc;
+  font-style: italic;
+}
+
+#dossier-body h3 {
+  font-size: var(--text-md);
+  letter-spacing: 0.16em;
+  color: var(--amber);
+  margin: 18px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--panel-edge);
+}
+
+.backlog-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.backlog-entry {
+  padding-left: 12px;
+  border-left: 2px solid var(--panel-edge);
+}
+
+.backlog-entry.backlog-checkpoint {
+  border-left-color: var(--amber);
+}
+
+.backlog-speaker {
+  display: block;
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  margin-bottom: 4px;
+}
+
+.backlog-text {
+  font-size: var(--text-md);
+  white-space: pre-line;
+  color: var(--ivory);
+}
+
+/* ---------------- 存档与确认面板 ---------------- */
+.dossier-mecha {
+  font-size: var(--text-sm);
+  color: #a9bad0;
+  border-left: 3px solid rgba(255, 180, 84, 0.45);
+  padding-left: 10px;
+}
+
+.saves-note {
+  font-size: var(--text-sm);
+  color: var(--ivory-dim);
+  padding: 0 4px 12px;
+}
+
+.save-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.save-row-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.save-row-detail {
+  font-size: var(--text-sm);
+  color: #9fb0c6;
+}
+
+.save-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.confirm-panel {
+  max-width: min(520px, 92vw);
+  display: grid;
+  gap: 14px;
+}
+
+.confirm-message {
+  color: var(--ivory);
+  font-size: var(--text-md);
+}
+
+.confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------------- 阅读布局与窄屏 ---------------- */
+.callsign-label { display: flex; justify-content: space-between; align-items: baseline; }
+.callsign-label span { font-size: 12px; color: #8b9dae; }
+.controls-help { font-size: 13px; color: #acbac6; }
+.controls-help summary { cursor: pointer; width: fit-content; padding: 6px 0; }
+.start-actions .primary { flex: 1 1 100%; justify-content: space-between; padding-inline: 18px; }
+.chapter-context { flex: 1; min-width: 0; }
+.location-label { margin-top: 5px; padding-left: 15px; font-size: 12px; color: #b5c4d2; letter-spacing: .08em; }
+.toolbar .btn:hover { background: rgba(180,196,208,.1); border-color: rgba(180,196,208,.2); }
+.dialogue-text { line-height: 1.85; letter-spacing: .035em; min-height: 3.7em; }
+.continue-hint { font-size: 12px; color: #b8c5d0; letter-spacing: .08em; gap: 12px; }
+.continue-keys { color: #8999aa; font-size: 11px; }
+.caret { color: var(--amber); }
+.overlay { background: rgba(4,10,17,.74); backdrop-filter: blur(8px); }
+.overlay-panel { border-radius: 8px; border-color: rgba(204,217,230,.2); background: #101a26; }
+.overlay-head { padding-bottom: 18px; border-bottom: 1px solid var(--panel-edge); }
+.overlay-head h2 { font-size: 21px; letter-spacing: .08em; font-weight: 500; }
+.backlog-entry { padding: 12px 0 16px 18px; border-left-color: rgba(215,183,126,.25); }
+.choice { border-radius: 4px; border-left-width: 2px; background: rgba(30,43,57,.65); }
+.choice-index { border-radius: 3px; font-weight: 500; background: transparent; color: var(--amber); border: 1px solid rgba(215,183,126,.35); }
+.start-actions .primary::after { content: "→"; margin-left: auto; }
+@media (min-width: 1600px) {
+  .portrait-wrap { width: min(320px, 34dvh); }
+}
+@media (max-width: 860px) {
+  .topbar { gap: 10px; padding: 14px 20px; flex-wrap: wrap; }
+  .chapter-context { flex-basis: 100%; }
+  .toolbar { margin-left: auto; }
+  .toolbar .btn { padding: 8px 12px; }
+  .portrait-wrap { right: 7vw; width: min(32vw, 29dvh); }
+  .dialogue-panel { width: calc(100% - 36px); padding: 22px 26px 16px; margin-bottom: 18px; }
+  .save-status { left: 20px; top: 88px; transform: none; }
+  .auto-status { top: 128px; right: 20px; }
+}
+@media (max-width: 620px) {
+  .title-inner { padding: 44px 26px 30px; gap: 12px; }
+  .title-kicker { font-size: 12px; letter-spacing: .18em; }
+  .game-title-en { font-size: 9px; letter-spacing: .22em; }
+  .game-tagline { margin: 18px 0 0; font-size: 17px; }
+  .topbar { padding: 12px 12px 6px; gap: 4px; }
+  .chapter-label { font-size: 12px; letter-spacing: .06em; }
+  .location-label { font-size: 11px; }
+  .toolbar { width: 100%; justify-content: flex-end; gap: 0; }
+  .toolbar .btn { padding: 8px 10px; font-size: 13px; }
+  .key-chip { display: none; }
+  .portrait-wrap { width: min(36vw, 25dvh); right: 7vw; }
+  .dialogue-panel { width: calc(100% - 24px); margin: 14px auto 12px; padding: 18px 18px 14px; gap: 10px; }
+  .dialogue-text { font-size: 17px; line-height: 1.85; max-height: 34dvh; }
+  .speaker-name { font-size: 17px; }
+  .speaker-role { font-size: 11px; }
+  .faction-tag { display: none; }
+  .continue-hint { align-self: flex-end; }
+  .continue-keys { display: none; }
+  .nameplate { gap: 6px 10px; padding-bottom: 8px; }
+  .finale { max-height: 50dvh; overflow: auto; }
+  .finale-actions .btn { flex: 1 1 100%; }
+  .save-status { top: 116px; left: 20px; font-size: 11px; }
+  .auto-status { top: 116px; font-size: 11px; }
+}
+@media (max-height: 540px) and (min-width: 621px) {
+  .portrait-wrap { width: 25dvh; }
+  .dialogue-panel { padding: 14px 24px; margin-bottom: 12px; gap: 6px; }
+  .dialogue-text { max-height: 24dvh; min-height: 2em; }
+  .topbar { padding-block: 6px; }
+}
+
+/* ---------------- 减少动态效果 ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .caret {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ---------------- 隐藏属性硬约束（回归修复，勿删） ----------------
+   作者样式里的 display 声明（.title-screen{display:flex}、.game-screen{display:grid}、
+   .overlay{display:grid}、.choice-list{display:flex} 等）会覆盖浏览器对 [hidden] 的默认
+   display:none，于是 hidden 的标题画面 / 游戏画面 / 覆盖面板 / 选项列表仍然可见并挡住点击，
+   使流程卡死。下面这条 !important 声明对所有元素、所有选择器与所有媒体断点生效：
+   只要元素带 hidden 属性就一定不渲染，也不参与点击命中。 */
+[hidden] {
+  display: none !important;
+}
+
+/* 覆盖面板在 hidden 时同时清掉可能残留的居中/毛玻璃命中区域 */
+.overlay[hidden] {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}

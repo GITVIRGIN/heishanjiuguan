@@ -33,3 +33,12 @@
 工程侧 provenance 已完成；外部法律、商标、原生硬件和商业发行接受仍需项目所有者
 自行完成。详情见 [LEGAL_REVIEW_REQUIRED.md](LEGAL_REVIEW_REQUIRED.md) 与
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+
+## 同仓库游戏：《钢翼盟约》
+
+[在线游玩《钢翼盟约》](https://gitvirgin.github.io/heishanjiuguan/steel-wing-covenant/) ·
+[游戏说明](steel-wing-covenant/README.md) ·
+[下载 v1.0.0](https://github.com/GITVIRGIN/heishanjiuguan/releases/tag/steel-wing-covenant-v1.0.0)
+
+《钢翼盟约》是一部以机甲战争、舰上生活和伙伴羁绊为主题的分支视觉小说，放在
+`steel-wing-covenant/` 独立目录。仓库根目录继续提供《黑山酒馆》，两款游戏使用各自的入口。
